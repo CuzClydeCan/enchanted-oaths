@@ -8,9 +8,10 @@
 <!--
   ENCHANTED OATHS — built from "Enchanted Oaths — Website Build Copy & Execution Blueprint"
   Single-file site: all 5 pages live in this one file and switch with the top navigation.
-  TO WIRE THE FORM: the Check Availability form currently opens the visitor's email app
-  addressed to cuzclydecan@gmail.com with the answers filled in. When the Google Form
-  "Enchanted Oaths Wedding Inquiry" is created, replace the form section with its embed.
+  TO WIRE THE FORM: DONE (v2, Oct 30, 2026) — the Check Availability page embeds the
+  Google Form "Enchanted Oaths Wedding Inquiry":
+  https://docs.google.com/forms/d/e/1FAIpQLSfBmd0aa6meo5rsk2sfniUJjRl0TzLu8II1w0NgjMQGNUCyGw/viewform?embedded=true
+  (URL captured from the Google Sites embed; form lives under binurify@gmail.com.)
   IMAGE SLOTS: search this file for "IMAGE SLOT" — drop in the portrait and couple
   photos from the EnchantedOaths_ImagePack Drive folder there.
 -->
@@ -393,35 +394,9 @@
   </div>
   <section class="block">
     <div class="wrap">
-      <form class="form-card" id="inquiryForm">
-        <label for="names">Partner 1 &amp; Partner 2 Full Names *</label>
-        <input id="names" required autocomplete="name">
-        <label for="email">Email Address *</label>
-        <input id="email" type="email" required autocomplete="email">
-        <label for="phone">Mobile Phone Number *</label>
-        <input id="phone" type="tel" required autocomplete="tel">
-        <label for="date">Wedding Date *</label>
-        <input id="date" type="date" required>
-        <label for="time">Ceremony Start Time *</label>
-        <input id="time" type="time" required>
-        <label for="venue">Ceremony Venue &amp; City *</label>
-        <input id="venue" required>
-        <label for="guests">Estimated Guest Count</label>
-        <input id="guests" inputmode="numeric">
-        <label>Package Interest</label>
-        <div class="radios">
-          <label><input type="radio" name="pkg" value="Elopement $275"> Elopement — $275</label>
-          <label><input type="radio" name="pkg" value="Custom Celebration $475"> Custom Celebration — $475</label>
-          <label><input type="radio" name="pkg" value="Signature Experience $795"> Signature Experience — $795</label>
-          <label><input type="radio" name="pkg" value="Not sure yet"> Not sure yet</label>
-        </div>
-        <label for="detail">Tell me one fun detail about your relationship or ceremony plans</label>
-        <textarea id="detail" rows="4"></textarea>
-        <p style="margin-top:22px" class="center">
-          <button type="submit" class="btn btn-gold" style="font-family:'Montserrat',sans-serif">Send My Inquiry</button>
-        </p>
-        <p style="font-size:.82rem;color:var(--muted);text-align:center;margin-top:10px">Submitting opens your email app with the inquiry addressed to Enchanted Oaths — just press send there.</p>
-      </form>
+      <div class="form-card" style="padding:10px 6px">
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfBmd0aa6meo5rsk2sfniUJjRl0TzLu8II1w0NgjMQGNUCyGw/viewform?embedded=true" width="100%" height="1350" frameborder="0" marginheight="0" marginwidth="0" loading="lazy" title="Enchanted Oaths Wedding Inquiry" style="display:block;border:0;border-radius:10px;background:#fff">Loading the inquiry form…</iframe>
+      </div>
 
       <div class="direct">
         <p><strong>Prefer to connect directly?</strong></p>
@@ -464,25 +439,6 @@
   });
   showPage((location.hash || '#home').slice(1));
 
-  document.getElementById('inquiryForm').addEventListener('submit', function(e){
-    e.preventDefault();
-    var v = function(id){ return document.getElementById(id).value.trim(); };
-    var pkg = (document.querySelector('input[name="pkg"]:checked') || {}).value || 'Not specified';
-    var lines = [
-      'Partner Names: ' + v('names'),
-      'Email: ' + v('email'),
-      'Mobile Phone: ' + v('phone'),
-      'Wedding Date: ' + v('date'),
-      'Ceremony Start Time: ' + v('time'),
-      'Venue & City: ' + v('venue'),
-      'Estimated Guest Count: ' + (v('guests') || '—'),
-      'Package Interest: ' + pkg,
-      'Fun Detail: ' + (v('detail') || '—')
-    ];
-    var subject = encodeURIComponent('Enchanted Oaths Wedding Inquiry — ' + v('date'));
-    var body = encodeURIComponent(lines.join('\n'));
-    window.location.href = 'mailto:cuzclydecan@gmail.com?subject=' + subject + '&body=' + body;
-  });
 </script>
 </body>
 </html>
