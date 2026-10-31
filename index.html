@@ -1,285 +1,380 @@
 <!DOCTYPE html>
+<!-- Enchanted Oaths v3 — design/code supplied by Clyde Oct 31, 2026 (second version; supersedes the Tailwind draft).
+     Dash audit corrections applied before deploy (reported to Clyde in chat):
+     1) Phone updated to his chosen public business number everywhere (old blueprint number removed).
+     2) "Mobile Notary Services" add-on bullet removed — Texas notary commission still in progress.
+     3) Portrait image pointed to a file that is not in the repo — replaced with a styled
+        placeholder until Clyde supplies the photo file.
+     4) Vocal-sample audio pointed to an MP3 that is not in the repo — replaced with a
+        discovery-call line until Clyde supplies the recording.
+     Kept as supplied: $125 Sign & Go tier, gold announcement banner, mailto intake form. -->
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Houston Wedding Officiant | Enchanted Oaths | Clyde Norman</title>
-<meta name="description" content="Houston wedding ceremonies crafted with heart, humor, and vocal presence. Check date availability with Officiant Clyde Norman.">
-<!--
-  ENCHANTED OATHS — built from "Enchanted Oaths — Website Build Copy & Execution Blueprint"
-  Single-file site: all 5 pages live in this one file and switch with the top navigation.
-  TO WIRE THE FORM: DONE (v2, Oct 30, 2026) — the Check Availability page embeds the
-  Google Form "Enchanted Oaths Wedding Inquiry":
-  https://docs.google.com/forms/d/e/1FAIpQLSfBmd0aa6meo5rsk2sfniUJjRl0TzLu8II1w0NgjMQGNUCyGw/viewform?embedded=true
-  (URL captured from the Google Sites embed; form lives under binurify@gmail.com.)
-  IMAGE SLOTS: search this file for "IMAGE SLOT" — drop in the portrait and couple
-  photos from the EnchantedOaths_ImagePack Drive folder there.
--->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%235E192D'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='36' fill='%23C6A664' text-anchor='middle'%3EE%3C/text%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --merlot:#5E192D;
-    --merlot-dark:#471222;
-    --cream:#FDFBF7;
-    --gold:#C6A664;
-    --ink:#2B2320;
-    --muted:#6E5F57;
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--ink);line-height:1.65}
-  h1,h2,h3{font-family:'Playfair Display',serif;color:var(--merlot);line-height:1.2}
-  a{color:var(--merlot)}
-  .wrap{max-width:1120px;margin:0 auto;padding:0 22px}
-
-  /* Header / nav */
-  header{position:sticky;top:0;z-index:50;background:rgba(253,251,247,.96);border-bottom:2px solid var(--gold)}
-  .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0;flex-wrap:wrap}
-  .brand{font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:700;color:var(--merlot);text-decoration:none;letter-spacing:.02em}
-  .brand span{color:var(--gold)}
-  nav.main{display:flex;gap:6px;flex-wrap:wrap}
-  nav.main button{background:none;border:none;font-family:'Montserrat',sans-serif;font-size:.86rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--ink);padding:9px 13px;border-radius:999px;cursor:pointer}
-  nav.main button:hover{color:var(--merlot)}
-  nav.main button.active{background:var(--merlot);color:var(--cream)}
-  nav.main button.cta{border:2px solid var(--gold);color:var(--merlot)}
-  nav.main button.cta.active{background:var(--gold);color:var(--merlot-dark)}
-
-  /* Pages */
-  .page{display:none}
-  .page.show{display:block;animation:fade .25s ease}
-  @keyframes fade{from{opacity:0}to{opacity:1}}
-
-  /* Hero */
-  .hero{background:linear-gradient(160deg,var(--merlot) 0%,var(--merlot-dark) 100%);color:var(--cream);text-align:center;padding:84px 22px 74px}
-  .hero h1{color:var(--cream);font-size:clamp(1.9rem,4.6vw,3.2rem);max-width:880px;margin:0 auto 18px}
-  .hero p{max-width:700px;margin:0 auto 30px;font-size:1.06rem;color:#F3E7DC}
-  .hero .rule{width:74px;height:3px;background:var(--gold);margin:0 auto 26px;border-radius:2px}
-  .btn{display:inline-block;text-decoration:none;font-weight:700;font-size:.92rem;letter-spacing:.03em;padding:14px 26px;border-radius:999px;margin:4px;cursor:pointer;border:2px solid var(--gold)}
-  .btn-gold{background:var(--gold);color:var(--merlot-dark)}
-  .btn-gold:hover{background:#d3b878}
-  .btn-ghost{background:transparent;color:var(--cream);border-color:var(--cream)}
-  .btn-ghost:hover{background:rgba(255,255,255,.12)}
-  .btn-merlot{background:var(--merlot);color:var(--cream);border-color:var(--merlot)}
-  .btn-merlot:hover{background:var(--merlot-dark)}
-  .hero.small{padding:56px 22px 46px}
-  .hero.small h1{font-size:clamp(1.7rem,3.8vw,2.5rem)}
-  .hero.small p{margin-bottom:0}
-
-  /* Trust strip */
-  .trust{border-bottom:1px solid #EADFD2;background:#fff}
-  .trust .wrap{display:grid;grid-template-columns:repeat(4,1fr);text-align:center}
-  .trust div{padding:20px 10px;font-weight:600;font-size:.9rem;color:var(--merlot);border-left:1px solid #EADFD2}
-  .trust div:first-child{border-left:none}
-
-  section.block{padding:64px 0}
-  section.block.alt{background:#fff}
-  h2.sec{font-size:clamp(1.5rem,3.2vw,2.1rem);text-align:center;margin-bottom:12px}
-  .sec-sub{text-align:center;color:var(--muted);max-width:640px;margin:0 auto 36px}
-  .gold-rule{width:56px;height:3px;background:var(--gold);margin:14px auto 0;border-radius:2px}
-
-  /* Two column */
-  .two{display:grid;grid-template-columns:1fr 1.25fr;gap:44px;align-items:center}
-  .img-slot{border:2px dashed var(--gold);border-radius:14px;background:#FBF6EC;min-height:340px;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--muted);font-size:.88rem;padding:24px}
-  .two p{margin-bottom:14px}
-
-  /* Cards */
-  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-  .card{background:#fff;border:1px solid #EADFD2;border-top:4px solid var(--gold);border-radius:14px;padding:28px 24px;display:flex;flex-direction:column;box-shadow:0 2px 10px rgba(94,25,45,.05)}
-  .card.pop{border-top-color:var(--merlot);position:relative}
-  .card .tag{position:absolute;top:-13px;right:18px;background:var(--merlot);color:var(--cream);font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 11px;border-radius:999px}
-  .card h3{font-size:1.28rem;margin-bottom:6px}
-  .card .price{font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--merlot);margin-bottom:10px}
-  .card p,.card li{font-size:.94rem}
-  .card ul{list-style:none;margin:0 0 18px}
-  .card ul li{padding:5px 0 5px 20px;position:relative}
-  .card ul li::before{content:"•";color:var(--gold);font-weight:700;position:absolute;left:2px}
-  .card .spacer{flex:1}
-  .card .btn{text-align:center;margin:0}
-
-  /* Testimonial banner */
-  .quote-band{background:var(--merlot);color:var(--cream);padding:58px 22px;text-align:center}
-  .quote-band blockquote{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1.15rem,2.6vw,1.5rem);max-width:820px;margin:0 auto;line-height:1.5}
-  .quote-band .stars{color:var(--gold);letter-spacing:.35em;margin-bottom:16px;font-size:1rem}
-
-  /* Steps */
-  .steps{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:920px;margin:0 auto}
-  .step{background:#fff;border:1px solid #EADFD2;border-radius:14px;padding:26px}
-  .step .num{font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold);line-height:1}
-  .step h3{font-size:1.15rem;margin:8px 0 8px}
-  .step p{font-size:.94rem;color:var(--ink)}
-  .center{text-align:center}
-
-  /* Add-ons + FAQ */
-  .addons{max-width:760px;margin:0 auto;background:#fff;border:1px solid #EADFD2;border-radius:14px;padding:26px 30px}
-  .addons li{margin:8px 0 8px 18px;font-size:.96rem}
-  details{max-width:820px;margin:0 auto 12px;background:#fff;border:1px solid #EADFD2;border-radius:12px;padding:16px 20px}
-  details summary{font-weight:600;color:var(--merlot);cursor:pointer}
-  details p{margin-top:10px;font-size:.95rem}
-
-  /* Reviews */
-  .review{background:#fff;border:1px solid #EADFD2;border-left:4px solid var(--gold);border-radius:12px;padding:26px 28px;max-width:820px;margin:0 auto 20px}
-  .review .stars{color:var(--gold);letter-spacing:.3em;margin-bottom:10px}
-  .review blockquote{font-family:'Playfair Display',serif;font-style:italic;font-size:1.12rem;line-height:1.55}
-  .slot-note{max-width:820px;margin:0 auto;text-align:center;color:var(--muted);font-size:.9rem;border:2px dashed var(--gold);border-radius:12px;padding:22px;background:#FBF6EC}
-
-  /* Form */
-  .form-card{max-width:760px;margin:0 auto;background:#fff;border:1px solid #EADFD2;border-radius:16px;padding:34px 32px;box-shadow:0 2px 12px rgba(94,25,45,.06)}
-  .form-card label{display:block;font-weight:600;font-size:.88rem;margin:16px 0 6px;color:var(--merlot)}
-  .form-card input,.form-card textarea{width:100%;font-family:'Montserrat',sans-serif;font-size:.95rem;padding:11px 13px;border:1px solid #D9CBB8;border-radius:9px;background:var(--cream)}
-  .form-card input:focus,.form-card textarea:focus{outline:2px solid var(--gold);border-color:var(--gold)}
-  .radios label{display:flex;gap:9px;align-items:center;font-weight:500;color:var(--ink);margin:8px 0;cursor:pointer}
-  .radios input{width:auto}
-  .direct{max-width:760px;margin:26px auto 0;text-align:center;background:#fff;border:1px solid #EADFD2;border-radius:14px;padding:24px}
-  .direct p{margin:4px 0}
-
-  footer{background:var(--merlot-dark);color:#EAD9CE;text-align:center;padding:30px 22px;font-size:.88rem}
-  footer .fname{font-family:'Playfair Display',serif;color:var(--cream);font-size:1.05rem;margin-bottom:6px}
-
-  @media (max-width:820px){
-    .trust .wrap{grid-template-columns:1fr 1fr}
-    .trust div{border-left:none;border-top:1px solid #EADFD2}
-    .two{grid-template-columns:1fr}
-    .cards{grid-template-columns:1fr}
-    .steps{grid-template-columns:1fr}
-    .nav{justify-content:center;text-align:center}
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Houston Wedding Officiant | Enchanted Oaths | Clyde Norman</title>
+  <meta name="description" content="Houston Wedding Ceremonies Crafted with Heart, Humor, and Vocal Presence. Check date availability with Officiant Clyde Norman across Harris, Fort Bend, and Montgomery Counties." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%235E192D'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='36' fill='%23C6A664' text-anchor='middle'%3EE%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --merlot: #5E192D;
+      --cream: #FDFBF7;
+      --gold: #C6A664;
+      --dark: #22181C;
+      --white: #FFFFFF;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--cream);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      color: var(--merlot);
+    }
+    /* Announcement Banner */
+    .announcement-bar {
+      background-color: var(--gold);
+      color: var(--dark);
+      text-align: center;
+      padding: 10px 16px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .announcement-bar a {
+      color: var(--merlot);
+      text-decoration: underline;
+      margin-left: 8px;
+    }
+    /* Navigation */
+    header {
+      background-color: var(--merlot);
+      color: var(--cream);
+      padding: 18px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--cream);
+      text-decoration: none;
+      letter-spacing: 0.5px;
+    }
+    nav a {
+      color: var(--cream);
+      text-decoration: none;
+      margin-left: 24px;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    nav a:hover { color: var(--gold); }
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(rgba(94, 25, 45, 0.88), rgba(94, 25, 45, 0.88));
+      color: var(--cream);
+      text-align: center;
+      padding: 90px 8%;
+    }
+    .hero h1 {
+      color: var(--cream);
+      font-size: 2.8rem;
+      max-width: 850px;
+      margin: 0 auto 20px;
+      line-height: 1.25;
+    }
+    .hero p {
+      font-size: 1.15rem;
+      max-width: 720px;
+      margin: 0 auto 34px;
+      opacity: 0.95;
+    }
+    .btn-group { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      border-radius: 4px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .btn-primary { background-color: var(--gold); color: var(--dark); }
+    .btn-primary:hover { background-color: #d4b675; }
+    .btn-outline { border: 2px solid var(--gold); color: var(--cream); }
+    .btn-outline:hover { background-color: var(--gold); color: var(--dark); }
+    /* Trust Strip */
+    .trust-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      background-color: var(--white);
+      border-bottom: 2px solid var(--gold);
+      padding: 24px 6%;
+      text-align: center;
+      font-weight: 600;
+      color: var(--merlot);
+      gap: 16px;
+    }
+    /* Sections */
+    section { padding: 72px 8%; max-width: 1200px; margin: 0 auto; }
+    .section-title { text-align: center; font-size: 2.2rem; margin-bottom: 40px; }
+    /* Value Proposition */
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      align-items: center;
+    }
+    .vocal-box {
+      margin-top: 24px;
+      padding: 18px 22px;
+      background-color: var(--white);
+      border-left: 4px solid var(--gold);
+      border-radius: 4px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .portrait-slot {
+      border: 2px dashed var(--gold);
+      border-radius: 8px;
+      background-color: #FBF6EC;
+      min-height: 340px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #6E5F57;
+      padding: 24px;
+      font-size: 0.95rem;
+    }
+    /* Express Banner */
+    .express-banner {
+      background-color: var(--merlot);
+      color: var(--cream);
+      padding: 28px 32px;
+      border-radius: 8px;
+      border: 2px solid var(--gold);
+      margin-bottom: 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .express-banner h3 { color: var(--gold); margin-bottom: 6px; font-size: 1.5rem; }
+    /* Pricing Cards */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 28px;
+    }
+    .card {
+      background: var(--white);
+      border: 1px solid #e6dfd5;
+      border-radius: 8px;
+      padding: 36px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+    }
+    .card.popular {
+      border: 2px solid var(--gold);
+      position: relative;
+    }
+    .badge {
+      background-color: var(--gold);
+      color: var(--dark);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      align-self: flex-start;
+      margin-bottom: 12px;
+    }
+    .price {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--merlot);
+      margin: 12px 0 20px;
+    }
+    .card ul { list-style: none; margin-bottom: 28px; }
+    .card ul li { margin-bottom: 10px; padding-left: 20px; position: relative; font-size: 0.95rem; }
+    .card ul li::before {
+      content: "•";
+      color: var(--gold);
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+    }
+    .addons-box {
+      margin-top: 36px;
+      background: var(--white);
+      padding: 28px;
+      border-radius: 8px;
+      border-left: 4px solid var(--merlot);
+    }
+    /* Steps */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+    .step-card {
+      background: var(--white);
+      padding: 24px;
+      border-radius: 8px;
+      border-top: 3px solid var(--gold);
+    }
+    /* Testimonial */
+    .testimonial-banner {
+      background-color: var(--merlot);
+      color: var(--cream);
+      text-align: center;
+      padding: 56px 10%;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-style: italic;
+    }
+    /* Form */
+    .contact-form {
+      background: var(--white);
+      padding: 36px;
+      border-radius: 8px;
+      max-width: 700px;
+      margin: 0 auto;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+    }
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.9rem; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-family: inherit;
+    }
+    footer {
+      background-color: var(--dark);
+      color: var(--cream);
+      text-align: center;
+      padding: 32px 6%;
+      font-size: 0.9rem;
+    }
+  </style>
 </head>
 <body>
 
-<header>
-  <div class="wrap nav">
-    <a class="brand" href="#home" data-nav="home">Enchanted <span>Oaths</span></a>
-    <nav class="main">
-      <button data-nav="home" class="active">Home</button>
-      <button data-nav="how">How It Works</button>
-      <button data-nav="packages">Packages &amp; Pricing</button>
-      <button data-nav="reviews">Reviews</button>
-      <button data-nav="contact" class="cta">Check Availability</button>
+  <!-- Announcement Banner -->
+  <div class="announcement-bar">
+    Now Booking 2026 &amp; 2027 Houston Wedding Dates —
+    <a href="#contact">Check Availability</a>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <a href="#" class="brand">Enchanted Oaths</a>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#wedding-officiant-packages-houston">Packages &amp; Pricing</a>
+      <a href="#contact">Check Availability</a>
     </nav>
-  </div>
-</header>
+  </header>
 
-<!-- ============ PAGE 1: HOME ============ -->
-<main class="page show" id="page-home">
+  <!-- Hero Section -->
   <div class="hero">
-    <div class="rule"></div>
     <h1>Houston Wedding Ceremonies Crafted with Heart, Humor, and Vocal Presence</h1>
-    <p>No dry templates. No awkward monotone. Just your love story, told with warmth, emotion, and stage-level delivery.</p>
-    <a class="btn btn-gold" href="#contact" data-nav="contact">Check My Date's Availability</a>
-    <a class="btn btn-ghost" href="#packages" data-nav="packages">View Packages &amp; Pricing</a>
-  </div>
-
-  <div class="trust">
-    <div class="wrap">
-      <div>5-Star Rated Officiant</div>
-      <div>Harris &amp; Surrounding Counties</div>
-      <div>Professional Vocal Projection</div>
-      <div>100% Legal Filing Guarantee</div>
+    <p>No dry templates. No awkward monotone. Just your love story, told with warmth, humor, and stage-level vocal delivery across Houston, Sugar Land, Katy, The Woodlands, and Galveston.</p>
+    <div class="btn-group">
+      <a href="#contact" class="btn btn-primary">Check My Date's Availability</a>
+      <a href="#wedding-officiant-packages-houston" class="btn btn-outline">View Packages &amp; Pricing</a>
     </div>
   </div>
 
-  <section class="block">
-    <div class="wrap two">
-      <!-- IMAGE SLOT: Portrait of Clyde Norman from EnchantedOaths_ImagePack (Alt Text: Houston wedding officiant Clyde Norman) -->
-      <div class="img-slot">Portrait of Clyde Norman<br>Houston Wedding Officiant</div>
+  <!-- Authority & Trust Strip -->
+  <div class="trust-strip">
+    <div>★ 5-Star Rated Officiant</div>
+    <div>📍 Harris, Fort Bend &amp; Montgomery Counties</div>
+    <div>🎙️ Professional Vocal Projection</div>
+    <div>✓ 100% Legal Filing Guarantee</div>
+  </div>
+
+  <!-- Value Proposition Block -->
+  <section id="about">
+    <div class="about-grid">
       <div>
         <h2>Meet Clyde Norman: Officiant, Voice Talent &amp; Legal Signing Specialist</h2>
-        <p>Your wedding ceremony sets the tone for your entire celebration. With years of experience as an independent voice actor, mobile notary, and married partner since 11/11/11, I combine dynamic vocal pacing with meticulous legal compliance. Every guest in the back row hears every word, your ceremony flows seamlessly, and your marriage license is signed and filed with 100% legal precision.</p>
+        <p style="margin-top: 16px;">Your wedding ceremony sets the tone for your entire celebration. With years of experience as an independent voice actor, mobile notary, and married partner since 11/11/11, I combine dynamic vocal pacing with meticulous legal compliance. Every guest in the back row hears every word, your ceremony flows seamlessly, and your marriage license is signed and filed with 100% legal precision.</p>
+        <div class="vocal-box">
+          <strong>🔊 Listen to a 45-Second Ceremony Vocal Sample</strong>
+          <p style="font-size: 0.85rem; margin-top: 6px;">Hear how warm, articulate vocal delivery transforms your ceremony atmosphere.</p>
+          <p style="font-size: 0.85rem; margin-top: 10px;"><em>Want to hear the voice before you book? Ask on your free discovery call and Clyde will read your ceremony sample live.</em></p>
+        </div>
+      </div>
+      <div>
+        <!-- Portrait placeholder: replace with Clyde's photo file when supplied (assets/clyde-norman-portrait.jpg) -->
+        <div class="portrait-slot">Portrait of Clyde Norman<br/>Houston Wedding Officiant</div>
       </div>
     </div>
   </section>
 
-  <section class="block alt">
-    <div class="wrap">
-      <h2 class="sec">Ceremony Packages</h2>
-      <div class="gold-rule"></div>
-      <p class="sec-sub">Three ways to say "I do" — every one of them legal, personal, and unforgettable.</p>
-      <div class="cards">
-        <div class="card">
-          <h3>Intimate Elopements</h3>
-          <div class="price">$275</div>
-          <p>Simple, meaningful ceremonies for up to 10 guests. Legal execution and prompt county filing included.</p>
-          <div class="spacer"></div>
-          <a class="btn btn-merlot" href="#packages" data-nav="packages">Learn More</a>
-        </div>
-        <div class="card pop">
-          <span class="tag">Most Popular</span>
-          <h3>Custom Celebrations</h3>
-          <div class="price">$475</div>
-          <p>100% customized script with unlimited revisions, questionnaire consultation, and seamless vendor coordination.</p>
-          <div class="spacer"></div>
-          <a class="btn btn-merlot" href="#packages" data-nav="packages">View Details</a>
-        </div>
-        <div class="card">
-          <h3>Signature Storybook</h3>
-          <div class="price">$795</div>
-          <p>The complete experience: full custom script, 1-on-1 vow coaching, rehearsal leadership, and a keepsake booklet.</p>
-          <div class="spacer"></div>
-          <a class="btn btn-merlot" href="#packages" data-nav="packages">Explore Signature</a>
-        </div>
+  <!-- Featured Testimonial -->
+  <div class="testimonial-banner">
+    "Clyde delivered a ceremony that captured our dynamic with warmth and humor. Our guests are still raving about his vocal presence and how relaxed he made us feel."
+  </div>
+
+  <!-- How It Works -->
+  <section id="how-it-works">
+    <h2 class="section-title">Stress-Free from First Chat to Final Signature</h2>
+    <div class="steps-grid">
+      <div class="step-card">
+        <h3>1. Discovery Call</h3>
+        <p style="margin-top: 8px; font-size: 0.95rem;">Verify your wedding date and connect for a relaxed 15-minute video or phone chat to confirm our styles align. No pressure, just conversation.</p>
+      </div>
+      <div class="step-card">
+        <h3>2. Story Crafting</h3>
+        <p style="margin-top: 8px; font-size: 0.95rem;">Share your journey, memorable moments, and ceremony preferences through a structured, easy questionnaire.</p>
+      </div>
+      <div class="step-card">
+        <h3>3. Script Revisions</h3>
+        <p style="margin-top: 8px; font-size: 0.95rem;">You have full editorial control. We refine the script together until every line feels authentic to your relationship.</p>
+      </div>
+      <div class="step-card">
+        <h3>4. Delivery &amp; Filing</h3>
+        <p style="margin-top: 8px; font-size: 0.95rem;">I arrive 30–45 minutes early for audio checks, coordinate with your DJ and planner, deliver an engaging ceremony, and mail your license via certified mail within 48 business hours.</p>
       </div>
     </div>
   </section>
 
-  <div class="quote-band">
-    <div class="stars">★ ★ ★ ★ ★</div>
-    <blockquote>"Clyde delivered a ceremony that captured our dynamic with warmth and humor. Our guests are still raving about his vocal presence and how relaxed he made us feel."</blockquote>
-  </div>
-</main>
+  <!-- Packages & Pricing -->
+  <section id="wedding-officiant-packages-houston">
+    <h2 class="section-title">Transparent Packages for Every Ceremony Style</h2>
 
-<!-- ============ PAGE 2: HOW IT WORKS ============ -->
-<main class="page" id="page-how">
-  <div class="hero small">
-    <div class="rule"></div>
-    <h1>Stress-Free from First Chat to Final Signature</h1>
-  </div>
-  <section class="block">
-    <div class="wrap">
-      <div class="steps">
-        <div class="step">
-          <div class="num">1</div>
-          <h3>Check Availability &amp; 15-Minute Discovery Call</h3>
-          <p>Verify your wedding date and connect for a relaxed 15-minute video or phone chat to confirm our styles align. No pressure, just conversation.</p>
-        </div>
-        <div class="step">
-          <div class="num">2</div>
-          <h3>Couple Questionnaire &amp; Story Crafting</h3>
-          <p>Share your journey, memorable moments, and ceremony preferences through a structured, easy questionnaire.</p>
-        </div>
-        <div class="step">
-          <div class="num">3</div>
-          <h3>Script Review &amp; Collaborative Revisions</h3>
-          <p>You have full editorial control. We refine the script together until every line feels authentic to your relationship.</p>
-        </div>
-        <div class="step">
-          <div class="num">4</div>
-          <h3>Ceremony Delivery &amp; Certified County Filing</h3>
-          <p>I arrive 30–45 minutes early for audio checks, coordinate with your DJ and planner, deliver an engaging ceremony, and mail your completed license via certified mail within 48 business hours.</p>
-        </div>
+    <!-- Express Tier Banner -->
+    <div class="express-banner">
+      <div style="max-width: 700px;">
+        <h3>Just Need It Legal? "Sign &amp; Go" License Signing — $125</h3>
+        <p style="font-size: 0.95rem;">Skip the courthouse lines. Meet in Southwest Houston / Missouri City or a nearby coffee shop for a 10-minute legal marriage license signing and 48-hour certified clerk return. Available Tuesday–Thursday.</p>
       </div>
-      <p class="center" style="margin-top:38px">
-        <a class="btn btn-merlot" href="#contact" data-nav="contact">Start Step 1: Check Your Date</a>
-      </p>
+      <a href="#contact" class="btn btn-primary">Book Sign &amp; Go</a>
     </div>
-  </section>
-</main>
 
-<!-- ============ PAGE 3: PACKAGES & PRICING ============ -->
-<main class="page" id="page-packages">
-  <div class="hero small">
-    <div class="rule"></div>
-    <h1>Transparent Packages for Every Ceremony Style</h1>
-  </div>
-
-  <section class="block">
-    <div class="wrap">
-      <div class="cards">
-        <div class="card">
-          <h3>The Legal &amp; Intimate Elopement</h3>
+    <div class="pricing-grid">
+      <!-- Tier 1 -->
+      <div class="card">
+        <div>
+          <h3>Tier 1: The Legal &amp; Intimate Elopement</h3>
           <div class="price">$275</div>
           <ul>
             <li>Up to 10 guests</li>
@@ -287,12 +382,15 @@
             <li>Legal marriage license execution</li>
             <li>Certified return mailing to county clerk</li>
           </ul>
-          <div class="spacer"></div>
-          <a class="btn btn-merlot" href="#contact" data-nav="contact">Book Elopement</a>
         </div>
-        <div class="card pop">
-          <span class="tag">Most Popular</span>
-          <h3>The Classic Custom Celebration</h3>
+        <a href="#contact" class="btn btn-primary" style="text-align: center;">Book Elopement</a>
+      </div>
+
+      <!-- Tier 2 -->
+      <div class="card popular">
+        <div>
+          <span class="badge">Most Popular</span>
+          <h3>Tier 2: The Classic Custom Celebration</h3>
           <div class="price">$475</div>
           <ul>
             <li>Full guest count</li>
@@ -302,11 +400,14 @@
             <li>Sound-check arrival 30–45 minutes prior</li>
             <li>Complete legal execution &amp; certified filing</li>
           </ul>
-          <div class="spacer"></div>
-          <a class="btn btn-merlot" href="#contact" data-nav="contact">Book Custom Ceremony</a>
         </div>
-        <div class="card">
-          <h3>The Signature Storybook Experience</h3>
+        <a href="#contact" class="btn btn-primary" style="text-align: center;">Book Custom Ceremony</a>
+      </div>
+
+      <!-- Tier 3 -->
+      <div class="card">
+        <div>
+          <h3>Tier 3: The Signature Storybook Experience</h3>
           <div class="price">$795</div>
           <ul>
             <li>Everything included in Classic Custom Celebration</li>
@@ -314,131 +415,81 @@
             <li>1-on-1 Vow Coaching consultation</li>
             <li>Printed keepsake ceremony script booklet</li>
           </ul>
-          <div class="spacer"></div>
-          <a class="btn btn-merlot" href="#contact" data-nav="contact">Book Signature Experience</a>
         </div>
+        <a href="#contact" class="btn btn-primary" style="text-align: center;">Book Signature Experience</a>
       </div>
+    </div>
+
+    <!-- Add-Ons -->
+    <div class="addons-box">
+      <h3>Add-On Options</h3>
+      <ul style="margin-top: 12px; padding-left: 20px;">
+        <li><strong>Rehearsal Attendance (for Custom Package):</strong> $175</li>
+        <li><strong>Unity Ritual Integration (Sand, Candle, Handfasting, Broom):</strong> $50</li>
+        <li><strong>Extended Travel:</strong> Outside 35-mile radius from Houston (77071): $0.75 / mile round-trip</li>
+      </ul>
     </div>
   </section>
 
-  <section class="block alt">
-    <div class="wrap">
-      <h2 class="sec">Add-On Options</h2>
-      <div class="gold-rule"></div>
-      <p class="sec-sub"></p>
-      <div class="addons">
-        <ul>
-          <li><strong>Rehearsal Attendance</strong> (for Custom Package): $175</li>
-          <li><strong>Unity Ritual Integration</strong> (Sand, Candle, Handfasting, Broom): $50</li>
-          <li><strong>Travel</strong> outside 35-mile radius from Central Houston: $0.75 / mile</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section class="block">
-    <div class="wrap">
-      <h2 class="sec">Frequently Asked Questions</h2>
-      <div class="gold-rule"></div>
-      <p class="sec-sub"></p>
-      <details>
-        <summary>How do we obtain our Texas marriage license?</summary>
-        <p>Purchase your license from any Texas County Clerk at least 72 hours before your ceremony (and no more than 90 days before). I provide guidance on specific county clerk procedures.</p>
-      </details>
-      <details>
-        <summary>Do you attend the wedding rehearsal?</summary>
-        <p>Rehearsal attendance is included in the Signature Package and can be added to the Custom Celebration package for $175.</p>
-      </details>
-      <details>
-        <summary>How far in advance should we reserve our date?</summary>
-        <p>Most couples book 6 to 9 months in advance, especially for popular spring and fall weekend dates.</p>
-      </details>
-      <details>
-        <summary>How is the marriage license handled after the ceremony?</summary>
-        <p>I review all signatures immediately following the ceremony and personally mail the completed license to the issuing county clerk via certified tracking within 48 business hours.</p>
-      </details>
-    </div>
-  </section>
-</main>
-
-<!-- ============ PAGE 4: REVIEWS ============ -->
-<main class="page" id="page-reviews">
-  <div class="hero small">
-    <div class="rule"></div>
-    <h1>Stories from Couples We've Married Across Greater Houston</h1>
-    <p>Real ceremonies, authentic moments, and 5-star experiences.</p>
-  </div>
-  <section class="block">
-    <div class="wrap">
-      <div class="review">
-        <div class="stars">★ ★ ★ ★ ★</div>
-        <blockquote>"Clyde delivered a ceremony that captured our dynamic with warmth and humor. Our guests are still raving about his vocal presence and how relaxed he made us feel."</blockquote>
-      </div>
-      <!-- IMAGE SLOT + REVIEW SLOTS: feature client photos from EnchantedOaths_ImagePack
-           alongside each verified couple testimonial, and insert the link to the
-           verified Google Business Profile here. No reviews have been added beyond
-           the featured testimonial above — add real ones only. -->
-      <div class="slot-note">More verified reviews from Houston couples will be added here as ceremonies are completed.</div>
-      <p class="center" style="margin-top:34px">
-        <a class="btn btn-merlot" href="#contact" data-nav="contact">Check Availability for Your Wedding</a>
+  <!-- Check Availability Form -->
+  <section id="contact">
+    <h2 class="section-title">Let’s Check Your Wedding Date</h2>
+    <div class="contact-form">
+      <form action="mailto:cuzclydecan@gmail.com" method="POST" enctype="text/plain">
+        <div class="form-group">
+          <label>1. Partner 1 &amp; Partner 2 Full Names *</label>
+          <input type="text" name="Names" required />
+        </div>
+        <div class="form-group">
+          <label>2. Email Address *</label>
+          <input type="email" name="Email" required />
+        </div>
+        <div class="form-group">
+          <label>3. Mobile Phone Number *</label>
+          <input type="tel" name="Phone" required />
+        </div>
+        <div class="form-group">
+          <label>4. Wedding Date *</label>
+          <input type="date" name="WeddingDate" required />
+        </div>
+        <div class="form-group">
+          <label>5. Ceremony Start Time (Optional)</label>
+          <input type="time" name="StartTime" />
+        </div>
+        <div class="form-group">
+          <label>6. Ceremony Venue or General Area, if known (Optional)</label>
+          <input type="text" name="Venue" placeholder="e.g., Sugar Land, The Heights, or Venue Name" />
+        </div>
+        <div class="form-group">
+          <label>7. Estimated Guest Count</label>
+          <input type="number" name="GuestCount" />
+        </div>
+        <div class="form-group">
+          <label>8. Package Interest *</label>
+          <select name="Package" required>
+            <option value="Weekday Sign & Go ($125)">Weekday Sign &amp; Go ($125)</option>
+            <option value="Elopement ($275)">Intimate Elopement ($275)</option>
+            <option value="Custom Celebration ($475)" selected>Classic Custom Celebration ($475)</option>
+            <option value="Signature Experience ($795)">Signature Storybook Experience ($795)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>9. Tell me one fun detail about your relationship or ceremony plans</label>
+          <textarea name="RelationshipDetail" rows="4"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%; border: none; font-size: 1rem;">Check Date Availability</button>
+      </form>
+      <p style="text-align: center; margin-top: 20px; font-size: 0.9rem;">
+        Prefer to connect directly? Call or text: <strong>(832) 930-1707</strong> | Email: <strong>cuzclydecan@gmail.com</strong><br/>
+        All inquiries receive a response within 24 business hours.
       </p>
     </div>
   </section>
-</main>
 
-<!-- ============ PAGE 5: CHECK AVAILABILITY ============ -->
-<main class="page" id="page-contact">
-  <div class="hero small">
-    <div class="rule"></div>
-    <h1>Let's Check Your Wedding Date</h1>
-  </div>
-  <section class="block">
-    <div class="wrap">
-      <div class="form-card" style="padding:10px 6px">
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfBmd0aa6meo5rsk2sfniUJjRl0TzLu8II1w0NgjMQGNUCyGw/viewform?embedded=true" width="100%" height="1350" frameborder="0" marginheight="0" marginwidth="0" loading="lazy" title="Enchanted Oaths Wedding Inquiry" style="display:block;border:0;border-radius:10px;background:#fff">Loading the inquiry form…</iframe>
-      </div>
+  <!-- Footer -->
+  <footer>
+    Enchanted Oaths • Clyde Norman • Houston, TX • (832) 930-1707 • cuzclydecan@gmail.com • Serving Harris, Fort Bend &amp; Montgomery Counties
+  </footer>
 
-      <div class="direct">
-        <p><strong>Prefer to connect directly?</strong></p>
-        <p>Call or text: <a href="tel:+18329301707">(832) 930-1707</a></p>
-        <p>Email: <a href="mailto:cuzclydecan@gmail.com">cuzclydecan@gmail.com</a></p>
-        <p>All inquiries receive a response within 24 business hours.</p>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <div class="fname">Enchanted Oaths</div>
-  Enchanted Oaths • Clyde Norman • Houston, TX • (832) 930-1707 • cuzclydecan@gmail.com • Serving Harris, Fort Bend &amp; Montgomery Counties
-</footer>
-
-<script>
-  var pages = {home:'page-home', how:'page-how', packages:'page-packages', reviews:'page-reviews', contact:'page-contact'};
-  var titles = {
-    home: 'Houston Wedding Officiant | Enchanted Oaths | Clyde Norman',
-    how: 'How It Works | Ceremony Planning Process | Enchanted Oaths',
-    packages: 'Wedding Officiant Packages & Pricing | Houston, TX | Enchanted Oaths',
-    reviews: 'Wedding Officiant Reviews Houston | Enchanted Oaths Testimonials',
-    contact: 'Contact & Check Date Availability | Enchanted Oaths Officiants'
-  };
-  function showPage(key){
-    if(!pages[key]) key = 'home';
-    Object.keys(pages).forEach(function(k){
-      document.getElementById(pages[k]).classList.toggle('show', k === key);
-    });
-    document.querySelectorAll('[data-nav]').forEach(function(el){
-      if(el.tagName === 'BUTTON') el.classList.toggle('active', el.getAttribute('data-nav') === key);
-    });
-    document.title = titles[key];
-    window.scrollTo({top:0});
-    if(location.hash !== '#' + key) history.replaceState(null,'','#' + key);
-  }
-  document.querySelectorAll('[data-nav]').forEach(function(el){
-    el.addEventListener('click', function(e){ e.preventDefault(); showPage(el.getAttribute('data-nav')); });
-  });
-  showPage((location.hash || '#home').slice(1));
-
-</script>
 </body>
 </html>
